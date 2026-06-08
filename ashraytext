@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>80G Donation Receipt</title>
+
+<style>
+
+:root{
+    --primary:#8d636e;
+    --primary-dark:#6f4c55;
+    --secondary:#a87b85;
+    --light:#f7eef0;
+    --dark:#3d2a2f;
+    --border:#e6d6da;
+
+    /* Gradient Shades */
+    --gradient-1:#8d636e;
+    --gradient-2:#a87b85;
+    --gradient-3:#c9a6ad;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#edf3fa;
+    padding:20px;
+}
+
+.receipt{
+    width:794px;
+    min-height:1123px;
+    margin:auto;
+    background:#fff;
+    /* border-radius:18px; */
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+    border:2px solid var(--primary);
+}
+
+.header{
+    display:flex;
+    align-items:center;
+    padding:20px;
+background: linear-gradient(
+    135deg,
+    #8d636e 0%,
+    #a87b85 50%,
+    #c9a6ad 100%
+);
+    color:#fff;
+}
+
+.logo-box{
+    width:140px;
+    text-align:center;
+}
+
+.logo-box img{
+    width:100px;
+}
+
+.org-info{
+    flex:1;
+    text-align:center;
+}
+
+.top-small{
+    font-size:13px;
+    letter-spacing:3px;
+    opacity:.9;
+}
+
+.org-title{
+    font-size:30px;
+    font-weight:800;
+    margin:5px 0;
+}
+
+.org-desc{
+    font-size:11px;
+    line-height:1.6;
+}
+
+.title-bar{
+    background:#e6d6da;
+    color:var(--primary);
+    text-align:center;
+    font-size:24px;
+    font-weight:800;
+    padding:14px;
+    border-bottom:2px solid var(--border);
+    letter-spacing:1px;
+}
+
+.section{
+    padding:25px;
+}
+
+.row{
+    display:flex;
+    align-items:center;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+}
+
+.label{
+    font-weight:700;
+    color:var(--dark);
+    margin-right:8px;
+}
+
+.value-line{
+    flex: 1;
+    width: 100%;
+    min-height: 28px;
+    padding: 4px 8px;
+    color: #222;
+    font-weight: 600;
+
+    border-bottom: 2px solid var(--secondary);
+    display: block;
+}
+
+.space{
+    flex:1;
+}
+
+.w120{width:120px;}
+.w180{width:180px;}
+.w300{width:300px;}
+.w350{width:350px;}
+.w500{width:500px;}
+
+.amount-row{
+    display:flex;
+    gap:20px;
+    margin-top:25px;
+}
+
+.amount-box,
+.pan-box{
+    flex:1;
+}
+
+.amount-inner,
+.pan-inner{
+    height:65px;
+    border-radius:12px;
+    border:2px solid var(--secondary);
+    background:#e6d6da;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    font-weight:700;
+    color:var(--primary);
+}
+.row{
+    display:flex;
+    align-items:flex-end;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+}
+
+.amount-inner div{
+    flex:1;
+    text-align:center;
+}
+
+.middle-section{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:30px;
+}
+
+.left-block{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.big-80g{
+    font-size:80px;
+    font-weight:900;
+    color:var(--primary);
+    line-height:1;
+}
+
+.donation-box{
+    width:320px;
+    padding:15px;
+    border-radius:12px;
+    border:2px solid var(--secondary);
+    background:#e6d6da;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.right-block{
+    text-align:center;
+}
+
+.stamp{
+    width:120px;
+    margin-bottom:10px;
+}
+
+.sign{
+    font-size:17px;
+    font-weight:700;
+    color:var(--primary);
+}
+
+.foundation{
+    font-size:18px;
+    font-weight:800;
+    color:var(--dark);
+}
+
+.auto-receipt{
+    margin-top:25px;
+    text-align:center;
+    background:#e6d6da;
+    padding:12px;
+    border-radius:10px;
+    color:var(--primary);
+    font-weight:700;
+}
+
+.message-box{
+    margin:0 25px 25px;
+    border-radius:15px;
+    border:2px solid var(--border);
+    background:#e6d6da;
+    padding:25px;
+}
+
+.thanks{
+    text-align:center;
+    color:var(--primary);
+    font-size:24px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.message-box p{
+    margin-bottom:15px;
+    line-height:1.8;
+    color:#444;
+    font-size:14px;
+}
+
+.subject{
+    text-align:center;
+    font-weight:700;
+    color:var(--dark);
+    margin-top:20px;
+}
+
+.footer{
+    background: linear-gradient(
+    135deg,
+    #8d636e 0%,
+    #a87b85 50%,
+    #c9a6ad 100%
+);
+    color:#fff;
+    text-align:center;
+    padding:18px;
+    font-size:12px;
+    line-height:1.8;
+}
+
+@media print{
+    body{
+        background:#fff;
+        padding:0;
+    }
+
+    .receipt{
+        box-shadow:none;
+        border-radius:0;
+    }
+}
+
+
+
+
+
+
+</style>
+</head>
+<body>
+
+<div class="receipt">
+
+    <div class="header">
+
+        <div class="logo-box">
+            <img src="logoa.jpg" alt="Logo">
+        </div>
+
+        <div class="org-info">
+
+            <div class="top-small">RAY OF HOPE</div>
+
+            <div class="org-title">
+                ASHRAY FOR LIFE FOUNDATION
+            </div>
+
+            <div class="org-desc">
+                Charity Commissioner (Reg.) No. E-37237,
+                Certificate Under Section 80G of Income Tax Act 1961
+                <br>
+                *80G Registration No. AAJTA4535BF2022101
+                *CSR Registration No.CSR00069515
+                <br>
+                *PAN CARD No AAJTA4535B
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="title-bar">
+        80G CERTIFICATE OF DONATION
+    </div>
+
+    <div class="section">
+
+        <div class="row">
+            <div class="label">Dated:</div>
+            <div class="value-line w120">1-Jun-26</div>
+
+            <div class="space"></div>
+
+            <div class="label">Receipt No.</div>
+            <div class="value-line w120">17125</div>
+        </div>
+
+        <div class="row">
+            <div class="label">Received from thanks Mr./Mrs./Ms. :</div>
+            <div class="value-line w500">
+                Mahendra Chandanshiv
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="label">Address:</div>
+            <div class="value-line w500">NA</div>
+        </div>
+
+        <div class="row">
+            <div class="label">City:</div>
+            <div class="value-line w180">NA</div>
+
+            <div style="width:20px"></div>
+
+            <div class="label">State:</div>
+            <div class="value-line w180">NA</div>
+
+            <div style="width:20px"></div>
+
+            <div class="label">Pin Code:</div>
+            <div class="value-line w180">NA</div>
+        </div>
+
+        <div class="row">
+            <div class="label">The Sum of Rupees:</div>
+            <div class="value-line w500">
+                Five Hundred Rupees and No. Paise Only
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="label">Mode of Payment:</div>
+            <div class="value-line w300">
+                Google Pay
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="label">Payment ID No.:</div>
+            <div class="value-line w350">
+                *943350090493
+            </div>
+        </div>
+
+        <div class="amount-row">
+
+            <div class="amount-box">
+
+                <div class="label" style="margin-bottom:8px">
+                    <!-- Amount (INR) -->
+                </div>
+
+                <div class="amount-inner">
+                    <div>Amount (INR).</div>
+                    <div>Rs.500.00</div>
+                </div>
+
+            </div>
+
+
+
+   <div class="amount-box">
+
+                <div class="label" style="margin-bottom:8px">
+                    <!-- Amount (INR) -->
+                </div>
+
+                <div class="amount-inner">
+                    <div> PAN NO.</div>
+                    <div>NA</div>
+                </div>
+
+            </div>
+
+
+
+            <!--<div class="pan-box">
+
+                <div class="label" style="margin-bottom:8px">
+                     PAN NO
+                </div>
+
+                <div class="pan-inner">
+                    PAN NO: NA
+                </div>
+
+            </div>-->
+
+        </div>
+
+        <div class="middle-section">
+
+            <div class="left-block">
+
+                <div class="big-80g">
+                    80G
+                </div>
+
+                <div class="donation-box">
+                    Donation To Ashray For Life Foundation
+                    <br>
+                    Eligible For 50% Income tax deduction
+                    <br>
+                    80G of Income tax act 1961
+                </div>
+
+            </div>
+
+            <div class="right-block">
+
+                <img src="stamp.png" class="stamp" alt="Stamp">
+
+                <div class="sign">
+                    Authorised Sign.
+                </div>
+
+                <div class="foundation">
+                    ASHRAY FOR LIFE FOUNDATION.
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="auto-receipt">
+            ****This is system generated auto receipt****
+        </div>
+
+    </div>
+
+    <div class="message-box">
+
+        <div class="thanks">
+            Thankyou for your Valuable Donation.
+        </div>
+
+        <p>
+            * Together we are making a difference! Your continued support
+            of our mission is deeply gratifying to us, and we hope it is
+            the same for you. Your contribution is enabling us to
+            accomplish in the field of Health, Education,
+            Sustainability, Vocational Training, Empowering Women and
+            Child Development.
+        </p>
+
+        <p>
+            * If You Have any Question regarding this 80G Tax Deduction
+            Certificate, Kindly get in touch with our Donor Relation
+            Officer at donorcare@aflf.org by quoting Unique Receipt Number.
+        </p>
+
+        <p>
+            * This Receipt is invalid in case of non-realization of the
+            money instrument or reversal of the credit/debit card charges
+            or reversal of donation amount.
+        </p>
+
+        <div class="subject">
+            Subject to Mumbai Jurisdiction
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Regd. Add: Unit - 218, 2nd Floor, Meter No.2, Auris Galleria,
+        New Link Road, Auris Serenity, Malad (West), Mumbai - 400064.
+        <br>
+        Website: www.aflf.org |
+        Email: ashray.foundation22@gmail.com
+        <br>
+        Helpline Number SEVAK: *9930028300 *9930028200
+    </div>
+
+</div>
+
+</body>
+</html>

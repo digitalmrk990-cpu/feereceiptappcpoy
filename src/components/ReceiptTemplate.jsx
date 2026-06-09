@@ -9,22 +9,60 @@ export default function ReceiptTemplate({ donor, index, signature }) {
   const formattedDate = getFormattedDate()
   const amount = Number(donor['Amount']) || 0
 
+  // Print styles to preserve colors and maintain single page layout
+  const printStyles = `
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+      .receipt-container {
+        margin: 0 !important;
+        padding: 20px !important;
+        page-break-after: avoid;
+        page-break-inside: avoid;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      table {
+        page-break-inside: avoid;
+      }
+      div, section {
+        page-break-inside: avoid;
+      }
+      @page {
+        margin: 0;
+        size: A4;
+      }
+    }
+  `
+
   if (donor._dataMissing) {
     return (
-      <div
-        style={{
-          width: '1000px',
-          margin: '0 auto',
-          background: '#fff',
-          padding: '40px',
-          border: '2px solid #e4008d',
-          color: '#222',
-          fontFamily: 'Arial, sans-serif',
-          fontSize: '16px',
-          lineHeight: '1.6',
-          textAlign: 'center',
-        }}
-      >
+      <>
+        <style>{printStyles}</style>
+        <div
+          className="receipt-container"
+          style={{
+            width: '1000px',
+            margin: '0 auto',
+            background: '#fff',
+            padding: '20px',
+            border: '2px solid #e4008d',
+            color: '#222',
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '16px',
+            lineHeight: '1.6',
+            textAlign: 'center',
+            boxSizing: 'border-box',
+          }}
+        >
         <div style={{ fontSize: '48px', fontWeight: 'bold', color: '#e4008d', marginTop: '100px' }}>
           DATA MISSING
         </div>
@@ -35,23 +73,28 @@ export default function ReceiptTemplate({ donor, index, signature }) {
           Receipt No.: {donor['Receipt No.'] || 'N/A'}
         </div>
       </div>
+      </>
     )
   }
 
   return (
-    <div
-      style={{
-        width: '1000px',
-        margin: '0 auto',
-        background: '#fff',
-        padding: '40px',
-        border: '1px solid #ddd',
-        color: '#222',
-        fontFamily: 'Arial, sans-serif',
-        fontSize: '16px',
-        lineHeight: '1.6',
-      }}
-    >
+    <>
+      <style>{printStyles}</style>
+      <div
+        className="receipt-container"
+          style={{
+            width: '1000px',
+            margin: '0 auto',
+            background: '#fff',
+            padding: '40px',
+            border: '1px solid #ddd',
+            color: '#222',
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '16px',
+            lineHeight: '1.6',
+            boxSizing: 'border-box',
+          }}
+      >
       {/* Top Title */}
       <div
         style={{
@@ -210,7 +253,6 @@ export default function ReceiptTemplate({ donor, index, signature }) {
           alt="Authorised Signatory"
           style={{
             width: '178px',
-            height: '',
             display: 'block',
             margin: 0,
             padding: 0,
@@ -302,7 +344,7 @@ export default function ReceiptTemplate({ donor, index, signature }) {
           Helpline Number MANN: +91 7039006300 / +91 7039006400
         </div>
         <div style={{ width: '100%', fontSize: '18px', lineHeight: '1.6' }}>
-          <b>Registered Office  :</b> <s /><s />
+          <b>Registered Office  :</b>
           1708, One World, S.V. Road,
           Near N.M. High School,  Malad (West),Mumbai - 400064
         </div>
@@ -329,7 +371,8 @@ export default function ReceiptTemplate({ donor, index, signature }) {
       ></div>
         Donation Payment is Subject to Realisation
       </div>
-
     </div>
-  )
+      </>
+    )
 }
+

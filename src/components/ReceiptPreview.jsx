@@ -48,16 +48,33 @@ export default function ReceiptPreview({ donors, selectedIndex, signature, proje
       alert('Please allow pop-ups to print')
       return
     }
+    const el = receiptRef.current
+    const contentWidth = el.scrollWidth
+    const a4WidthPx = 794
+    const scale = Math.min(1, a4WidthPx / contentWidth)
+    const innerHtml = el.innerHTML
     printWindow.document.write(`
       <html>
         <head>
           <title>Donation Receipt</title>
           <style>
-            body { font-family: Arial, sans-serif; padding: 20px; }
-            @media print { body { padding: 0; } }
+            @page { size: A4 portrait; margin: 5mm; }
+            body { margin: 0; padding: 0; display: flex; justify-content: center; }
+            .receipt-print {
+              transform: scale(${scale});
+              transform-origin: top center;
+              page-break-inside: avoid;
+              page-break-after: avoid;
+            }
+            img { max-width: 100%; }
+            table { page-break-inside: avoid; }
+            @media print {
+              body { padding: 0; }
+              .receipt-print { transform: scale(${scale}); }
+            }
           </style>
         </head>
-        <body>${receiptRef.current.innerHTML}</body>
+        <body><div class="receipt-print">${innerHtml}</div></body>
       </html>
     `)
     printWindow.document.close()
